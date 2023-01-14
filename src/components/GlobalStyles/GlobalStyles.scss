@@ -1,0 +1,119 @@
+:root {
+    --text-color: #a3a3a3;
+    --white-color: #fff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* font-size: 10px */
+    font-size: 62.5%;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+}
+
+.row ::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+.clear {
+    clear: both;
+}
+
+.space {
+    height: 20px;
+}
+
+.content-section {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.col {
+    float: left;
+    
+}
+
+.col-2 {
+    width: 50%;
+}
+
+.col-3 {
+    width: 33.33333%;
+}
+
+.col-4 {
+    width: 25%;
+}
+
+
+/* SUBNAV */
+
+.subnav__list, .subnav__list-of-tour-package,
+.subnav__list-of-shop,
+.subnav__list-of-about-us,
+.subnav__list-of-contact,
+.subnav__list-of-news,
+.subnav__list-of-single-post,
+.subnav__list-of-pages,
+.subnav__list-of-about-us-2,
+.subnav__list-of-contact-2  {
+    position: absolute;
+    left: 0;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px #fff;
+    min-width: 190px;
+    text-transform: none; 
+    list-style: none;
+    display: none;
+    animation: fadeIn linear 0.2s;   
+}
+.subnav__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    color: var(--text-color);
+    padding: 15px 20px;
+    font-size: 1.6rem;
+    border-bottom: 1px solid #f1f1f1;
+    letter-spacing: 2px;
+}
+.subnav__item:hover {
+    background-color: #f9f9f9;
+}
+.subnav__item--btn {
+    color: var(--white-color);
+    padding: 2px 3px;
+    font-size: 1.2rem;
+    border-radius: 3px;
+    margin-left: 28px;
+    line-height: 1.2rem;
+    
+}
+.subnav__item--hover:hover .subnav {  
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+a:hover {
+    text-decoration: none;
+}
