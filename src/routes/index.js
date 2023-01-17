@@ -3,7 +3,7 @@ import PacketsPage from '../pages/Pakets';
 
 const publicRoutes = [
     { path: '/', component: HomePage },
-    { path: '/packets', component: PacketsPage, layout: null },
+    { path: '/packets', component: PacketsPage },
 ];
 
 const privateRoutes = [];

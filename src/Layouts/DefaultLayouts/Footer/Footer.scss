@@ -1,0 +1,142 @@
+.footer-section {
+    width: 100%;
+    height: 630px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 65px;
+    position: relative;
+}
+
+.footer__margin-8 {
+    height: 80px;
+    width: 100%;
+}
+
+.footer__contact {
+    display: flex;
+    justify-content: center;
+}
+
+.footer__contact-info {
+    padding-right: 70px;
+}
+
+.footer__contact-sub-title {
+    font-size: 1.4rem;
+    color: #9a9a9a;
+    margin-bottom: 20px;
+}
+
+.footer__contact-title {
+    font-size: 3.6rem;
+    color: #555;
+    font-weight: 700;
+}
+
+.footer__contact-input {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 70px;
+}
+
+.footer__contact-input-btn {
+    border-style: none;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    padding: 15px 20px;
+    outline: none;
+    min-width: 260px;
+}
+
+.footer__contact-input-send {
+    border-style: none;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    padding: 15px 20px;
+    background-color: #14b9d5;
+    color: var(--white-color);
+    margin-left: 20px;
+}
+
+.footer__content {
+    padding: 0 15px;
+}
+
+.footer__introduce {
+    background-color: var(--white-color);
+    padding: 35px 30px;
+    display: flex;
+}
+
+.footer__introduce-content {
+    width: 50%;
+    padding: 0 15px;
+}
+
+.footer__introduce-logo {
+    width: 150px;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.footer__introduce-paragragh {
+    width: 80%;
+    font-size: 1.4rem;
+    color: #9a9a9a;
+    letter-spacing: 1px;
+    line-height: 1.8;
+}
+
+.footer__introduce-link {
+    margin-top: 25px;
+}
+
+.footer__introduce-link a {
+    text-decoration: none;
+    font-size: 2.5rem;
+    color: #555;
+    padding: 0 10px;
+}
+
+.footer__introduce-list {
+    width: 50%;
+    display: flex;
+}
+
+.footer__introduce-item {
+    padding: 0 15px;
+}
+
+.footer__introduce-item-title {
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.footer__introduce-item-p {
+    font-size: 1.4rem;
+    color: #9a9a9a;
+    letter-spacing: 1px;
+    line-height: 2.7rem;
+}
+
+.footer__introduce-item-p-icon {
+    font-size: 1rem;
+    color: #9a9a9a;
+}
+
+.footer__end {
+    background-color: #14b9d5;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+}
+.footer__end-title {
+    font-size: 1.4rem;
+    color: var(--white-color);
+    line-height: 52px;
+    padding: 0 15px;
+}
