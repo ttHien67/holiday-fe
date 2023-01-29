@@ -41,18 +41,18 @@ function Header() {
                                 </li>
                             </ul>
                         </div>
-                        <label for="open--close" className="nav__icon">
+                        <label htmlFor="open--close" className="nav__icon">
                             <FontAwesomeIcon icon={faBars} />
                         </label>
                     </div>
                 </div>
             </header>
 
-            <input type="checkbox" name="" class="open--close" id="open--close" hidden />
-            <label for="open--close" class="overlay"></label>
+            <input type="checkbox" name="" className="open--close" id="open--close" hidden />
+            <label htmlFor="open--close" className="overlay"></label>
             <div className="navigation">
                 <div className="navigation__container">
-                    <label for="open--close" className="btn-close ti-close">
+                    <label htmlFor="open--close" className="btn-close ti-close">
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </label>
                     <div className="navigation__packages">
