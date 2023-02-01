@@ -1,18 +1,14 @@
 import './Packets.scss';
-import Image from '@/components/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 function Packets({ data }) {
-    const colorBtn = `packages__item-description-btn ` + data.colorBtn;
-    const image = require(`src/assets` + data.img);
-    // const logo = require(`src/assets` + data.logo);
     return (
         <div className="col-3 packages__item">
             <div className="packages__item-img">
-                <Image src={image} alt="" className="packages__item-img-pic" />
-                <a href="" className="packages__item-img-icon">
-                    {/* <Image src={require(`src/assets` + data.logo)} alt="" /> */}
+                <img src={require(`src/assets` + data.img)} alt="" className="packages__item-img-pic" />
+                <a href="" className={`packages__item-img-icon ` + data.colorIcon}>
+                    <img src={require(`src/assets` + data.logo)} alt="" />
                 </a>
             </div>
             <div className="packages__item-content">
@@ -26,7 +22,7 @@ function Packets({ data }) {
                 <div className="packages__item-price">
                     <p className="packages__item-price-name">
                         {data.type}
-                        <button className="packages__item-price-btn">+ 1</button>
+                        <button className={`packages__item-price-btn ` + data.colorBtn}>+ 1</button>
                     </p>
                     <span className="packages__item-price-money">
                         <span className="packages__item-price-old">{data.oldPrice}</span>
@@ -36,7 +32,7 @@ function Packets({ data }) {
                 <div className="packages__item-description">
                     <p className="packages__item-description-p">{data.description}</p>
 
-                    <button className={colorBtn}>DETAILS</button>
+                    <button className={`packages__item-description-btn ` + data.colorBtn}>DETAILS</button>
                 </div>
             </div>
         </div>

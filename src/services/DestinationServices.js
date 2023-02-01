@@ -1,7 +1,7 @@
 import createApiClient from './api.service';
 
-class PacketService {
-    constructor(baseURL = 'http://localhost:3000/api/packets') {
+class DestinationService {
+    constructor(baseURL = 'http://localhost:3000/api/destinations') {
         this.api = createApiClient(baseURL);
     }
 
@@ -11,10 +11,6 @@ class PacketService {
 
     async create(data) {
         return (await this.api.post('/', data)).data;
-    }
-
-    async search(name) {
-        return (await this.api.get(`/search/${name}`)).data;
     }
 
     async deleteAll() {
@@ -34,4 +30,4 @@ class PacketService {
     }
 }
 
-export default new PacketService();
+export default new DestinationService();
