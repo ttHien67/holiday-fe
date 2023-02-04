@@ -1,0 +1,147 @@
+.slider-detail {
+    max-height: 320px;
+    position: relative;
+    background-size: cover;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin-top: -104px;
+    padding-top: 40%
+}
+
+.slider-content {
+    position: absolute;
+    top: 75%;
+    right: 0;
+    left: 0;
+}
+
+.slider__title {
+    font-size: 45px;
+    color: #fff;
+    font-weight: bold;
+
+}
+
+.slider__info {
+    display: flex;
+    margin-top: 20px;
+}
+
+.slider__location {
+    display: flex;
+    margin-right: 30px;
+}
+
+.slider__location-icon {
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.slider__location-name {
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+}
+
+.content {
+    margin-top: -300px;
+}
+
+.content-section-detail {
+    display: flex;
+    margin-top: 65px;
+}
+
+
+.introduce__type {
+    display: flex;
+}
+
+.introduce__type-item {
+    display: flex;
+    flex: 1;
+}
+
+.introduce__type-img {
+    height: 40px;
+    width: 40px;
+    margin-right: 15px;
+}
+
+.introduce__type-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.introduce__type- {
+    font-size: 16px;
+    color: #878787;
+    letter-spacing: 1px;
+}
+
+.introduce__img {
+    width: 100%;
+    background-repeat: no-repeat;
+    margin-top: 30px;
+}
+
+.introduce__list {
+    margin-top: 30px;
+}
+
+.introduce__list-title {
+    display: flex;
+    list-style: none;
+}
+
+.introduce__list-item {
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    border-radius: 30px;
+    margin-right: 15px;
+    color: #000;
+}
+
+.introduce__list-item.active {
+    background-color: #14b9d5;
+    color: #fff;
+}
+
+.introduce__type-content {
+    margin-top: 30px;
+}
+
+.introduce__content-name {
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.introduce__content-pag {
+    font-size: 18px;
+    color: #878787;
+}
+
+.feedback-section {
+    flex: 1;
+    text-align: center;
+}
+.title-resgister {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+}
+.btn-resgister {
+    min-width: 200px;
+    display: inline-block;
+    padding: 16px 40px;
+    text-decoration: none;
+    font-size: 2.4rem;
+    border-radius: 30px;
+    color: #fff;
+}

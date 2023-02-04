@@ -18,7 +18,7 @@ function Button({ to, href, disabled, children, className, onClick, ...passProps
     }
 
     return (
-        <Comp className={className} {...props}>
+        <Comp className={className} to href {...props}>
             {children}
         </Comp>
     );

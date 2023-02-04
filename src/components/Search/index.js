@@ -11,7 +11,7 @@ import useDebounce from '@/hooks/useDebounce';
 
 
 function Search() {
-    const [searchValue, setSearchValue] = useState('');
+    const [searchValue, setSearchValue] = useState();
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
 

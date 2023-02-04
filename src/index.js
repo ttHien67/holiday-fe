@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import GlobalStyles from './components/GlobalStyles';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ErrorBoundary } from './utils/ErrorBoundary';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <GlobalStyles>
-            <App />
+            <ErrorBoundary>
+                <App />
+            </ErrorBoundary>
         </GlobalStyles>
     </React.StrictMode>,
 );
