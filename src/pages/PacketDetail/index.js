@@ -4,9 +4,9 @@ import iconTime from '@/assets/img/details/icon-time-white.png';
 import iconTypologies from '@/assets/img/details/icon-typologies-greydark.png';
 import iconBattery from '@/assets/img/details/icon-battery-greydark.png';
 import iconMiniage from '@/assets/img/details/icon-minage-greydark.png';
+import { useParams } from 'react-router-dom';
 
 import PacketServices from '@/services/PacketServices';
-import { useParams } from 'react-router-dom';
 import './PacketDetail.scss';
 import Button from '@/components/Button';
 import PacketsLayout from '@/Layouts/Packets';
@@ -27,14 +27,15 @@ function PacketDetail() {
     useEffect(() => {
         const fetchApi = async () => {
             let result = await PacketServices.getAll();
+
             //Loc packet da hien thi ra khoi danh sach
             let resultFilter = result.filter((_result) => _result._id !== id);
-            resultFilter = resultFilter.slice(0,5)
             setPackets(resultFilter);
         };
         fetchApi();
     }, [id]);
 
+    // document.title = packet[0].title
     return (
         <>
             {packet.map((_packet) => {

@@ -32,7 +32,6 @@ function Destination({ data, packets }) {
                                     <div className="des__item--hover-list">
                                         {destination.packages.map((packet, index) => {
                                             newArrayPacket = (packets.filter((_packet) => _packet.title === packet));
-                                            console.log(newArrayPacket, packet, index);
                                             return (
                                                 <Button to={`/packet/`} className="des__item--hover-item" key={index}>
                                                     {packet}

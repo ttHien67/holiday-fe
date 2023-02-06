@@ -52,9 +52,7 @@ function Header() {
             <label htmlFor="open--close" className="overlay"></label>
             <div className="navigation">
                 <div className="navigation__container">
-                    <label htmlFor="open--close" className="btn-close ti-close">
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </label>
+                    <label htmlFor="open--close" className="btn-close ti-close"></label>
                     <div className="navigation__packages">
                         <h1 className="nav__packages-title">
                             <u>OPTION</u>
