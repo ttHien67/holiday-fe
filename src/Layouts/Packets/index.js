@@ -32,7 +32,7 @@ function Packets({ data }) {
                                     <div className="packages__item-destination">
                                         <h1 className="packages__item-destination-name">{packet.title}</h1>
                                         <p className="packages__item-destination-place">
-                                            <FontAwesomeIcon icon={faLocationDot} />
+                                            <FontAwesomeIcon icon={faLocationDot} className="packages__item-destination-place-icon"/>
                                             {packet.location}
                                         </p>
                                     </div>
@@ -51,12 +51,12 @@ function Packets({ data }) {
                                     <div className="packages__item-description">
                                         <p className="packages__item-description-p">{packet.description}</p>
 
-                                        <Button
-                                            to={`/packet/` + packet._id}
+                                        <a
+                                            href={`/packet/` + packet._id}
                                             className={`packages__item-description-btn ` + packet.colorBtn}
                                         >
                                             DETAILS
-                                        </Button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

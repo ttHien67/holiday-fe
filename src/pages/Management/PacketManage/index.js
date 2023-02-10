@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import PacketServices from '@/services/PacketServices';
 import './PacketManage.scss'
 
+import Button from '@/components/Button';
+
 function PacketManage() {
     const [packets, setPackets] = useState([]);
 
@@ -21,13 +23,13 @@ function PacketManage() {
                 Manage Packets
             </h1>
 
-            <a
-                href="./add_package.php"
+            <Button
+                to="/manage/packet/add"
                 type="button"
                 className="btn btn-outline-primary manage-btn"
             >
                 Add
-            </a>
+            </Button>
 
             <table className="table table-hover">
                 <thead>

@@ -3,6 +3,7 @@ import PacketsPage from '../pages/Pakets';
 import PacketDetailPage from '../pages/PacketDetail';
 
 import PacketManagement from '@/pages/Management/PacketManage'
+import AddPacket from '@/pages/Management/AddPacket'
 
 const publicRoutes = [
     { path: '/', component: HomePage },
@@ -11,7 +12,8 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    {path: '/manage', component: PacketManagement}
+    {path: '/manage/packets', component: PacketManagement},
+    {path: '/manage/packet/add', component: AddPacket},
 ];
 
 export { publicRoutes, privateRoutes };

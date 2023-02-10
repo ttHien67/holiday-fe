@@ -1,4 +1,5 @@
 import './Management.scss'
+import Button from '@/components/Button';
 
 function Management({ children }) {
     return (
@@ -9,14 +10,14 @@ function Management({ children }) {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/manage">
+                                <Button to="/manage" className="nav-link active" aria-current="page" >
                                     Packets
-                                </a>
+                                </Button>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <Button className="nav-link" to="#">
                                     Link
-                                </a>
+                                </Button>
                             </li>
                             <li className="nav-item dropdown">
                                 <a
