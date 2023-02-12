@@ -4,6 +4,7 @@ import PacketDetailPage from '../pages/PacketDetail';
 
 import PacketManagement from '@/pages/Management/PacketManage'
 import AddPacket from '@/pages/Management/AddPacket'
+import EditPacket from '@/pages/Management/EditPacket'
 
 const publicRoutes = [
     { path: '/', component: HomePage },
@@ -14,6 +15,7 @@ const publicRoutes = [
 const privateRoutes = [
     {path: '/manage/packets', component: PacketManagement},
     {path: '/manage/packet/add', component: AddPacket},
+    {path: '/manage/packet/edit/:id', component: EditPacket},
 ];
 
 export { publicRoutes, privateRoutes };

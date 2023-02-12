@@ -1,45 +1,34 @@
-import './AddPacket.scss';
+import './EditPacket.scss';
 import PacketServices from '@/services/PacketServices';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-function AddPacket() {
-    const [img, setImg] = useState('');
-    const [logo, setLogo] = useState('');
-    const [title, setTitle] = useState('');
-    const [location, setLocation] = useState('');
-    const [type, setType] = useState('');
-    const [oldPrice, setOldPrice] = useState();
-    const [newPrice, setNewPrice] = useState();
-    const [description, setDesription] = useState('');
-    const [colorBtn, setColorBtn] = useState('');
-    const [colorIcon, setColorIcon] = useState('');
+function EditPacket() {
+    const [packet, setPacket] = useState({});
 
-    const data = {
-        img,
-        logo,
-        title,
-        location,
-        type,
-        oldPrice,
-        newPrice,
-        description,
-        colorBtn,
-        colorIcon,
-    };
+    const { id } = useParams('/manage/packet/edit');
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const result = await PacketServices.get(id);
+            setPacket(result);
+        };
+        fetchApi();
+    }, [id]);
 
     const handleCommit = async (e) => {
         try {
-            await PacketServices.create(data);
-            alert('Your packet has been created');
+            await PacketServices.update(id, packet);
+            alert('Your packet has been updated');
+            e.preventDefault();
         } catch (error) {
             alert(error);
         }
-        e.preventDefault();
     };
 
     const handlerReviewImage = (e, id) => {
-        const imgReview = document.getElementById(id)
-        
+        const imgReview = document.getElementById(id);
+
         imgReview.src = URL.createObjectURL(e.target.files[0]);
         imgReview.onload = function () {
             URL.revokeObjectURL(imgReview.src); // free memory
@@ -48,7 +37,7 @@ function AddPacket() {
 
     return (
         <div className="packet-modifying-container">
-            <h1 className="packet-modifying-title text-success">Add Packet</h1>
+            <h1 className="packet-modifying-title text-success">Edit Packet</h1>
 
             <form runat="server">
                 <div className="input-group mb-3">
@@ -62,12 +51,16 @@ function AddPacket() {
                             className="form-control"
                             name="img"
                             onChange={(e) => {
-                                setImg(`/img/packages/` + e.target.files[0].name);
+                                setPacket({ ...packet, img: `/img/packages/` + e.target.files[0].name });
                                 handlerReviewImage(e, 'img-review');
                             }}
                         />
                     </div>
-                    <img alt="Image review" id="img-review" />
+                    <img
+                        src={require(`src/assets` + (packet.img || '/img/packages/berlin.jpg'))}
+                        alt="Image review"
+                        id="img-review"
+                    />
                 </div>
 
                 <div className="input-group mb-3">
@@ -80,12 +73,17 @@ function AddPacket() {
                             className="form-control"
                             name="icon"
                             onChange={(e) => {
-                                setLogo(`/img/packages/` + e.target.files[0].name);
+                                setPacket({ ...packet, logo: `/img/packages/` + e.target.files[0].name });
                                 handlerReviewImage(e, 'icon-review');
                             }}
                         />
                     </div>
-                    <img alt="Icon review" id="icon-review" />
+                    <img
+                        src={require(`src/assets` + (packet.logo || '/img/packages/berlin.png'))}
+                        alt="Icon review"
+                        id="icon-review"
+                        style={{backgroundColor: '#999'}}
+                    />
                 </div>
 
                 <div className="input-group mb-3">
@@ -96,8 +94,9 @@ function AddPacket() {
                         type="text"
                         className="form-control"
                         name="title"
+                        value={packet.title}
                         onChange={(e) => {
-                            setTitle(e.target.value);
+                            setPacket({ ...packet, title: e.target.value });
                         }}
                     />
                 </div>
@@ -110,8 +109,9 @@ function AddPacket() {
                         type="text"
                         className="form-control"
                         name="location"
+                        value={packet.location}
                         onChange={(e) => {
-                            setLocation(e.target.value);
+                            setPacket({ ...packet, location: e.target.value });
                         }}
                     />
                 </div>
@@ -124,8 +124,9 @@ function AddPacket() {
                         type="text"
                         className="form-control"
                         name="type"
+                        value={packet.type}
                         onChange={(e) => {
-                            setType(e.target.value);
+                            setPacket({ ...packet, type: e.target.value });
                         }}
                     />
                 </div>
@@ -138,8 +139,9 @@ function AddPacket() {
                         type="text"
                         className="form-control"
                         name="oldPrice"
+                        value={packet.oldPrice}
                         onChange={(e) => {
-                            setOldPrice(e.target.value);
+                            setPacket({ ...packet, oldPrice: e.target.value });
                         }}
                     />
                 </div>
@@ -152,8 +154,9 @@ function AddPacket() {
                         type="text"
                         className="form-control"
                         name="newPrice"
+                        value={packet.newPrice}
                         onChange={(e) => {
-                            setNewPrice(e.target.value);
+                            setPacket({ ...packet, newPrice: e.target.value });
                         }}
                     />
                 </div>
@@ -167,8 +170,9 @@ function AddPacket() {
                         rows="5"
                         className="form-control"
                         name="description"
+                        value={packet.description}
                         onChange={(e) => {
-                            setDesription(e.target.value);
+                            setPacket({ ...packet, description: e.target.value });
                         }}
                     />
                 </div>
@@ -181,8 +185,9 @@ function AddPacket() {
                         type="text"
                         className="form-control"
                         name="colorBtn"
+                        value={packet.colorBtn}
                         onChange={(e) => {
-                            setColorBtn(e.target.value);
+                            setPacket({ ...packet, colorBtn: e.target.value });
                         }}
                     />
                 </div>
@@ -195,8 +200,9 @@ function AddPacket() {
                         type="text"
                         className="form-control"
                         name="colorIcon"
+                        value={packet.colorIcon}
                         onChange={(e) => {
-                            setColorIcon(e.target.value);
+                            setPacket({ ...packet, colorIcon: e.target.value });
                         }}
                     />
                 </div>
@@ -208,4 +214,4 @@ function AddPacket() {
     );
 }
 
-export default AddPacket;
+export default EditPacket;

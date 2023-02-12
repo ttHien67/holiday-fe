@@ -10,7 +10,7 @@ function Management({ children }) {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Button to="/manage" className="nav-link active" aria-current="page" >
+                                <Button to="/manage/packets" className="nav-link active" aria-current="page" >
                                     Packets
                                 </Button>
                             </li>
