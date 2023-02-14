@@ -196,3 +196,31 @@ u {
     z-index: 2;
     display: none;
 }
+
+// Header mini
+.header-mini {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    z-index: 10;
+    // display: none;
+}
+
+.header-mini__up-btn {
+    font-size: 4rem;
+    outline: none;
+    border-radius: 50%;
+    color: #e46d30;
+    border: none;
+    background-color: transparent;
+    transform: scale(0);
+    transition: all ease-out .3s;
+
+    :hover{ 
+        color: #e46d30;
+    }
+
+    .active {
+        transform: scale(1);
+    }
+}

@@ -5,7 +5,6 @@ import PacketsLayout from '@/Layouts/Packets';
 
 import { useState, useEffect } from 'react';
 
-
 function Packets() {
     const [packets, setPakets] = useState([]);
 
@@ -16,7 +15,12 @@ function Packets() {
         };
         fetchApi();
     }, []);
-    
+
+    const handlePrice = (e) => {
+        const price = document.querySelector('.selctor-destination__price');
+        price.innerHTML = e.target.value;
+    };
+
     return (
         <>
             <div className="slider-packets" style={{ backgroundImage: `url(${backgroundImagePacket})` }}>
@@ -44,11 +48,6 @@ function Packets() {
                                         <option value="">United State</option>
                                         <option value="">Oceania</option>
                                     </select>
-                                    <img
-                                        src="./assets/img/packages-page/destination-icon.png"
-                                        alt=""
-                                        className="selection-option__img"
-                                    />
                                 </div>
                             </div>
 
@@ -61,7 +60,7 @@ function Packets() {
 
                             <div className="selctor-destination ">
                                 <h5 className="selctor-destination__title">
-                                    Max Price: <span className="selctor-destination__price">5000</span> $
+                                    Max Price: <span className="selctor-destination__price">0</span> $
                                 </h5>
                                 <div className="selection-option">
                                     <input
@@ -70,7 +69,7 @@ function Packets() {
                                         max="10000"
                                         min="0"
                                         step="1"
-                                        value="5000"
+                                        onChange={handlePrice}
                                     />
                                     <div className="selection-option__checkbox">
                                         <input type="checkbox" className="selection-option__input-checkbox" />

@@ -223,5 +223,9 @@
     font-size: 1.4rem;
     border: none;
     border-radius: 50px;
+}
+
+.packages__item-description-btn:hover {
     cursor: pointer;
+    color: var(--white-color);
 }

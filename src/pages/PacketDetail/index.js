@@ -118,8 +118,8 @@ function PacketDetail() {
                             </div>
                             <div className="feedback-section">
                                 <h1 className='title-resgister'>Join with us</h1>
-                                <Button to={'/'} className={`btn-resgister ` + _packet.colorBtn}>
-                                    Resgistion
+                                <Button to={`/packet/contact/` + _packet._id} className={`btn-resgister ` + _packet.colorBtn}>
+                                    Resgister
                                 </Button>
                             </div>
                         </div>

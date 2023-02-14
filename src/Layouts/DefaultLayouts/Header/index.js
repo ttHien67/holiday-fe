@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 
 import { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
     return (
@@ -37,7 +37,7 @@ function Header() {
                                     <a href="">News</a>
                                 </li>
                                 <li className="nav__item nav__item-contact">
-                                    <a href="">Contact</a>
+                                    <Button to={'/packet/contact'}>Contact</Button>
                                 </li>
                             </ul>
                         </div>
@@ -59,6 +59,12 @@ function Header() {
                         </h1>
                     </div>
                 </div>
+            </div>
+
+            <div className="header-mini">
+                <a href="#" className="header-mini__up-btn">
+                    <FontAwesomeIcon icon={faChevronCircleUp} />
+                </a>
             </div>
         </Fragment>
     );

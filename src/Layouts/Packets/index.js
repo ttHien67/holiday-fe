@@ -2,8 +2,8 @@ import './Packets.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
-import Button from '@/components/Button';
 import Image from '@/components/Image';
+import { memo } from 'react';
 
 function Packets({ data }) {
     return (
@@ -68,4 +68,4 @@ function Packets({ data }) {
     );
 }
 
-export default Packets;
+export default memo(Packets);
