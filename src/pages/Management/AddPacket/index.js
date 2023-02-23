@@ -3,43 +3,21 @@ import PacketServices from '@/services/PacketServices';
 import { useState } from 'react';
 
 function AddPacket() {
-    const [img, setImg] = useState('');
-    const [logo, setLogo] = useState('');
-    const [title, setTitle] = useState('');
-    const [location, setLocation] = useState('');
-    const [type, setType] = useState('');
-    const [oldPrice, setOldPrice] = useState();
-    const [newPrice, setNewPrice] = useState();
-    const [description, setDesription] = useState('');
-    const [colorBtn, setColorBtn] = useState('');
-    const [colorIcon, setColorIcon] = useState('');
-
-    const data = {
-        img,
-        logo,
-        title,
-        location,
-        type,
-        oldPrice,
-        newPrice,
-        description,
-        colorBtn,
-        colorIcon,
-    };
+    const [packet, setPacket] = useState({});
 
     const handleCommit = async (e) => {
+        e.preventDefault();
         try {
-            await PacketServices.create(data);
+            await PacketServices.create(packet);
             alert('Your packet has been created');
         } catch (error) {
             alert(error);
         }
-        e.preventDefault();
     };
 
     const handlerReviewImage = (e, id) => {
-        const imgReview = document.getElementById(id)
-        
+        const imgReview = document.getElementById(id);
+
         imgReview.src = URL.createObjectURL(e.target.files[0]);
         imgReview.onload = function () {
             URL.revokeObjectURL(imgReview.src); // free memory
@@ -62,7 +40,7 @@ function AddPacket() {
                             className="form-control"
                             name="img"
                             onChange={(e) => {
-                                setImg(`/img/packages/` + e.target.files[0].name);
+                                setPacket({ ...packet, img: `/img/packages/` + e.target.files[0].name });
                                 handlerReviewImage(e, 'img-review');
                             }}
                         />
@@ -80,7 +58,7 @@ function AddPacket() {
                             className="form-control"
                             name="icon"
                             onChange={(e) => {
-                                setLogo(`/img/packages/` + e.target.files[0].name);
+                                setPacket({ ...packet, logo: `/img/packages/` + e.target.files[0].name });
                                 handlerReviewImage(e, 'icon-review');
                             }}
                         />
@@ -97,7 +75,7 @@ function AddPacket() {
                         className="form-control"
                         name="title"
                         onChange={(e) => {
-                            setTitle(e.target.value);
+                            setPacket({ ...packet, title: e.target.value });
                         }}
                     />
                 </div>
@@ -111,7 +89,7 @@ function AddPacket() {
                         className="form-control"
                         name="location"
                         onChange={(e) => {
-                            setLocation(e.target.value);
+                            setPacket({ ...packet, location: e.target.value });
                         }}
                     />
                 </div>
@@ -125,7 +103,7 @@ function AddPacket() {
                         className="form-control"
                         name="type"
                         onChange={(e) => {
-                            setType(e.target.value);
+                            setPacket({ ...packet, type: e.target.value });
                         }}
                     />
                 </div>
@@ -139,7 +117,7 @@ function AddPacket() {
                         className="form-control"
                         name="oldPrice"
                         onChange={(e) => {
-                            setOldPrice(e.target.value);
+                            setPacket({ ...packet, oldPrice: e.target.value });
                         }}
                     />
                 </div>
@@ -153,7 +131,7 @@ function AddPacket() {
                         className="form-control"
                         name="newPrice"
                         onChange={(e) => {
-                            setNewPrice(e.target.value);
+                            setPacket({ ...packet, newPrice: e.target.value });
                         }}
                     />
                 </div>
@@ -168,7 +146,7 @@ function AddPacket() {
                         className="form-control"
                         name="description"
                         onChange={(e) => {
-                            setDesription(e.target.value);
+                            setPacket({ ...packet, description: e.target.value });
                         }}
                     />
                 </div>
@@ -182,7 +160,7 @@ function AddPacket() {
                         className="form-control"
                         name="colorBtn"
                         onChange={(e) => {
-                            setColorBtn(e.target.value);
+                            setPacket({ ...packet, colorBtn: e.target.value });
                         }}
                     />
                 </div>
@@ -196,7 +174,7 @@ function AddPacket() {
                         className="form-control"
                         name="colorIcon"
                         onChange={(e) => {
-                            setColorIcon(e.target.value);
+                            setPacket({ ...packet, colorIcon: e.target.value });
                         }}
                     />
                 </div>

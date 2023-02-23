@@ -1,0 +1,156 @@
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { useState, useEffect } from 'react';
+import PacketServices from '@/services/PacketServices';
+import './PacketHome.scss';
+
+import Button from '@/components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+
+function PacketManage() {
+    const [packets, setPackets] = useState([]);
+    const [deletePacketID, setDeletePacketID] = useState('');
+
+    useEffect(() => {
+        const fetch = async () => {
+            const result = await PacketServices.getAll();
+            setPackets(result);
+        };
+        fetch();
+    }, []);
+
+    const handleSendID = (e) => {
+        setDeletePacketID(e.target.id);
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            const document = await PacketServices.delete(id);
+            return document;
+        } catch (error) {
+            alert(error);
+        }
+    };
+
+    return (
+        <>
+            <div className="manage-container">
+                <h1 className="manage-title text-success">Manage Packets</h1>
+
+                <Button to="/manage/packet/add" type="button" className="btn btn-outline-primary manage-btn">
+                    Add
+                </Button>
+
+                <table className="table table-hover">
+                    <thead>
+                        <tr className="manage-header-table">
+                            <th>ID</th>
+                            <th>Images</th>
+                            <th>Icons</th>
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Old Price</th>
+                            <th>New Price</th>
+                            <th>Description</th>
+                            <th>Color Button</th>
+                            <th>Color Icon</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody className="manage-text-table">
+                        {packets.map((packet) => {
+                            return (
+                                <tr key={packet._id}>
+                                    <td></td>
+                                    <td>
+                                        <img
+                                            src={require(`src/assets` + packet.img)}
+                                            alt={packet.title}
+                                            style={{ width: '100px' }}
+                                        />
+                                    </td>
+                                    <td>
+                                        <img
+                                            src={require(`src/assets` + packet.logo )}
+                                            alt={packet.title}
+                                            style={{ width: '100px', backgroundColor: '#999' }}
+                                        />
+                                    </td>
+                                    <td> {packet.title}</td>
+                                    <td>{packet.location}</td>
+                                    <td>{packet.type}</td>
+                                    <td>{packet.oldPrice}</td>
+                                    <td>{packet.newPrice}</td>
+                                    <td>{packet.description}</td>
+                                    <td>{packet.colorBtn}</td>
+                                    <td>{packet.colorIcon}</td>
+                                    <td>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-danger manage-btn"
+                                            data-toggle="modal"
+                                            data-target="#deleteModal"
+                                            id={packet._id}
+                                            onClick={handleSendID}
+                                        >
+                                            Delete
+                                        </button>
+
+                                        <Button
+                                            to={`/manage/packet/edit/` + packet._id}
+                                            type="button"
+                                            className="btn btn-outline-warning manage-btn"
+                                        >
+                                            Edit
+                                        </Button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            <div
+                className="modal fade"
+                id="deleteModal"
+                tabIndex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">
+                                Delete packet
+                            </h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    <FontAwesomeIcon icon={faXmark} />
+                                </span>
+                            </button>
+                        </div>
+                        <div className="modal-body">Do you want to delete packet?</div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={() => handleDelete(deletePacketID)}
+                                data-dismiss="modal"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default PacketManage;

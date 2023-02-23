@@ -37,7 +37,7 @@ function Header() {
                                     <a href="">News</a>
                                 </li>
                                 <li className="nav__item nav__item-contact">
-                                    <Button to={'/packet/contact'}>Contact</Button>
+                                    <Button to={'/contact'}>Contact</Button>
                                 </li>
                             </ul>
                         </div>
