@@ -1,4 +1,4 @@
-import './EditPacket.scss';
+
 import PacketServices from '@/services/PacketServices';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

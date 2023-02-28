@@ -7,7 +7,6 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 function ContactManagement() {
     const [contacts, setContacts] = useState([]);
     const [deleteContactID, setDeleteContactID] = useState('');
-    
 
     // fetch api contacts
     useEffect(() => {
@@ -24,23 +23,23 @@ function ContactManagement() {
     });
 
     const handleSendID = (e) => {
-        setDeleteContactID(e.target.id)
-    }
+        setDeleteContactID(e.target.id);
+    };
 
-    const handleDelete = async(id) => {
-        try{
+    const handleDelete = async (id) => {
+        try {
             await ContactServices.delete(id);
-        }catch(error){
-            alert(error)
+        } catch (error) {
+            alert(error);
         }
-    }
+    };
 
     return (
         <>
             <div className="manage-container">
                 <h1 className="manage-title text-success">Manage Contacts</h1>
 
-                <Button type="button" className="btn btn-outline-primary manage-btn">
+                <Button type="button" to="/manage/contact/add" className="btn btn-outline-primary manage-btn">
                     Add
                 </Button>
 
@@ -54,6 +53,7 @@ function ContactManagement() {
                             <th>Address</th>
                             <th>Message</th>
                             <th>Quantity</th>
+                            <th>Packet ID</th>
                             <th>Date</th>
                             <th></th>
                         </tr>
@@ -69,6 +69,7 @@ function ContactManagement() {
                                     <td>{contact.address}</td>
                                     <td>{contact.message}</td>
                                     <td>{contact.quantity}</td>
+                                    <td>{contact.packetID}</td>
                                     <td>{contact.date}</td>
                                     <td>
                                         <button
@@ -83,6 +84,7 @@ function ContactManagement() {
                                         </button>
 
                                         <Button
+                                            to={`/manage/contact/edit/` + contact._id}
                                             type="button"
                                             className="btn btn-outline-warning manage-btn"
                                         >

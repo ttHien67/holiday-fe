@@ -3,8 +3,6 @@ import Button from '@/components/Button';
 
 function Destination({ data, packets }) {
     // loc packet trung ten trong danh sach destination
-    let newArrayPacket = [];
-
     return (
         <div className="destination-section">
             <div className="content-section">
@@ -15,6 +13,7 @@ function Destination({ data, packets }) {
                 </h1>
                 <div className="des__list">
                     {data.map((destination, index) => {
+                        let newArrayPacket = [];
                         return (
                             <div className="col-3 des__item" key={index}>
                                 <img src={require(`src/assets` + destination.img)} alt="" className="des__item-img" />
@@ -31,18 +30,23 @@ function Destination({ data, packets }) {
                                     <h1 className="des__item--hover-title">Packets</h1>
                                     <div className="des__item--hover-list">
                                         {destination.packages.map((packet, index) => {
-                                            newArrayPacket = (packets.filter((_packet) => _packet.title === packet));
+                                            // Filter packets have same title in destination
+                                            newArrayPacket = packets.filter((_packet) => _packet.title === packet);
                                             return (
-                                                <Button to={`/packet/`} className="des__item--hover-item" key={index}>
-                                                    {packet}
+                                                <Button
+                                                    to={`/packet/` + newArrayPacket[0]?._id}
+                                                    className="des__item--hover-item"
+                                                    key={index}
+                                                >
+                                                    {newArrayPacket[0]?.title}
                                                 </Button>
                                             );
                                         })}
                                     </div>
                                     <div className="des__item--hover-btn">
-                                        <a href="" className="des__item--hover-btn-link">
+                                        <Button to={`/packets/` + destination._id} className="des__item--hover-btn-link">
                                             VIEW DESTINATION
-                                        </a>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>

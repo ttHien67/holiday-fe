@@ -1,19 +1,49 @@
 import './Packets.scss';
 import backgroundImagePacket from '@/assets/img/parallax-search-2.jpg';
 import PacketServices from '@/services/PacketServices';
+import DestinationServices from '@/services/DestinationServices';
 import PacketsLayout from '@/Layouts/Packets';
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Packets() {
-    const [packets, setPakets] = useState([]);
+    const { id } = useParams('/packets');
+    const [packets, setPackets] = useState([]);
+    const [destination, setDestination] = useState();
 
+    // Fetch appi destination's id
+    useEffect(() => {
+        const fetchApi = async () => {
+            let result = await DestinationServices.get(id);
+            setDestination(result);
+        };
+
+        id && fetchApi();
+    }, [id]);
+
+    // Fetch api all packets
     useEffect(() => {
         const fetchApi = async () => {
             let result = await PacketServices.getAll();
-            setPakets(result);
+            // Reserve array
+            result = result.reverse();
+            setPackets(result);
         };
+
         fetchApi();
+    }, []);
+
+    useEffect(() => {
+        let arr = [];
+
+        const filter = async () => {
+            await destination?.packages.forEach((title) => {
+                arr.push(packets?.filter((packet) => packet.title === title));
+            });
+            setPackets(arr.flat());
+        };
+        filter();
     }, []);
 
     const handlePrice = (e) => {

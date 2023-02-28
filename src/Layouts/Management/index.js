@@ -15,8 +15,8 @@ function Management({ children }) {
                                 </Button>
                             </li>
                             <li className="nav-item">
-                                <Button className="nav-link" to="#">
-                                    Link
+                                <Button className="nav-link" to="/manage/contacts">
+                                    Contacts
                                 </Button>
                             </li>
                             <li className="nav-item dropdown">

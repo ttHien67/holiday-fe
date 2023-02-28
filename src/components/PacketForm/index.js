@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './PacketForm.scss';
 
 function PacketForm({ packetEdition, onCommit }) {
     const [packet, setPacket] = useState({});

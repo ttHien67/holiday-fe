@@ -39,10 +39,6 @@
     z-index: -2;
 }
 
-.packages__list {
-    display: flex;
-    flex-wrap: wrap;
-}
 .packages__item {
     padding: 15px;
 }
@@ -214,6 +210,8 @@
     line-height: 1.6;
     letter-spacing: 1px;
     padding-bottom: 30px;
+    min-height: 102px;
+    text-overflow: ellipsis;
 }
 
 .packages__item-description-btn {

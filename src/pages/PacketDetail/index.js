@@ -30,6 +30,7 @@ function PacketDetail() {
 
             //Loc packet da hien thi ra khoi danh sach
             let resultFilter = result.filter((_result) => _result._id !== id);
+            resultFilter = resultFilter.reverse();
             setPackets(resultFilter);
         };
         fetchApi();

@@ -1,4 +1,4 @@
-import './AddPacket.scss';
+
 import PacketServices from '@/services/PacketServices';
 import PacketForm from '@/components/PacketForm'
 

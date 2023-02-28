@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import './ContactForm.scss';
 
-// import '@/pages/ContactForm/Contact.scss'
-
-function ContactForm({ id, quantity, onCommit }) {
+function ContactForm({ id, quantity, onCommit, contactEdition }) {
     const d = new Date();
     let day = d.getDate();
     let month = d.getMonth() + 1;
@@ -14,6 +13,10 @@ function ContactForm({ id, quantity, onCommit }) {
         date: `${month}/${day}/${year}`,
         quantity: quantity,
     });
+
+    useEffect(() => {
+        setContactInfo(contactEdition);
+    }, [contactEdition]);
 
     const {
         register,
@@ -47,7 +50,8 @@ function ContactForm({ id, quantity, onCommit }) {
                         className="contact__form-input-item-input"
                         type="text"
                         placeholder="Name"
-                        value={contactInfo.fullName}
+                        autoComplete="off"
+                        value={contactInfo?.fullName || ''}
                         {...register('fullName', { required: true, maxLength: 24 })}
                         onChange={(e) => {
                             setContactInfo({ ...contactInfo, fullName: e.target.value });
@@ -61,7 +65,8 @@ function ContactForm({ id, quantity, onCommit }) {
                         className="contact__form-input-item-input"
                         type="email"
                         placeholder="someone@example.com"
-                        value={contactInfo.email}
+                        autoComplete="off"
+                        value={contactInfo?.email || ''}
                         {...register('email', {
                             required: true,
                             pattern:
@@ -80,7 +85,8 @@ function ContactForm({ id, quantity, onCommit }) {
                     className="contact__form-input-item-input"
                     type="text"
                     placeholder="123 456 789"
-                    value={contactInfo.phone}
+                    autoComplete="off"
+                    value={contactInfo?.phone || ''}
                     {...register('phone', { required: true, maxLength: 11 })}
                     onChange={(e) => {
                         setContactInfo({ ...contactInfo, phone: e.target.value });
@@ -94,7 +100,8 @@ function ContactForm({ id, quantity, onCommit }) {
                     className="contact__form-input-item-input"
                     type="text"
                     placeholder="Your address"
-                    value={contactInfo.address}
+                    autoComplete="off"
+                    value={contactInfo?.address || ''}
                     {...register('address', { required: true })}
                     onChange={(e) => {
                         setContactInfo({ ...contactInfo, address: e.target.value });
@@ -108,7 +115,8 @@ function ContactForm({ id, quantity, onCommit }) {
                     className="contact__form-input-item-input"
                     rows="4"
                     placeholder="Your message"
-                    value={contactInfo.message}
+                    autoComplete="off"
+                    value={contactInfo?.message || ''}
                     {...register('message', { maxLength: 100 })}
                     onChange={(e) => {
                         handleCheckLengthMessage(e);

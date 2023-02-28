@@ -28,7 +28,8 @@ function Home() {
         const fetchApi = async () => {
             let result = await PacketServices.getAll();
             setPacketGroup(result)
-            result = result.slice(0, 3);
+            // reserve and slice 3 packet in array
+            result = result.reverse().slice(0, 3);
             setPackets(result);
         };
 
