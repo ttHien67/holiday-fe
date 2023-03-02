@@ -4,6 +4,7 @@ import PacketDetailPage from '../pages/PacketDetail';
 import ContactForm from '@/pages/Contact';
 
 import PacketManagement from '@/pages/Management/PacketHome';
+import Trash from '@/pages/Management/Trash'
 import AddPacket from '@/pages/Management/AddPacket';
 import EditPacket from '@/pages/Management/EditPacket';
 
@@ -23,6 +24,7 @@ const publicRoutes = [
 
 const privateRoutes = [
     { path: '/manage/packets', component: PacketManagement },
+    { path: '/manage/trash', component: Trash },
     { path: '/manage/packet/add', component: AddPacket },
     { path: '/manage/packet/edit/:id', component: EditPacket },
 

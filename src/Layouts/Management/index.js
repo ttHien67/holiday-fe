@@ -15,39 +15,9 @@ function Management({ children }) {
                                 </Button>
                             </li>
                             <li className="nav-item">
-                                <Button className="nav-link" to="/manage/contacts">
+                                <Button className="nav-link active" to="/manage/contacts">
                                     Contacts
                                 </Button>
-                            </li>
-                            <li className="nav-item dropdown">
-                                <a
-                                    className="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Dropdown
-                                </a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Action
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Another action
-                                        </a>
-                                    </li>
-                                    <li className="dropdown-divider"></li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Something else here
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
                         <form className="d-flex">

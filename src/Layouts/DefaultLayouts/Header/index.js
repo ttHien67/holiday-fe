@@ -2,6 +2,7 @@ import './Header.scss';
 import Image from '@/components/Image';
 import logoHeader from '@/assets/img/logo-travel.png';
 import Button from '@/components/Button';
+import Navigation from '@/components/Navigation'
 
 import { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -48,18 +49,7 @@ function Header() {
                 </div>
             </header>
 
-            <input type="checkbox" name="" className="open--close" id="open--close" hidden />
-            <label htmlFor="open--close" className="overlay"></label>
-            <div className="navigation">
-                <div className="navigation__container">
-                    <label htmlFor="open--close" className="btn-close ti-close"></label>
-                    <div className="navigation__packages">
-                        <h1 className="nav__packages-title">
-                            <u>OPTION</u>
-                        </h1>
-                    </div>
-                </div>
-            </div>
+            <Navigation />
 
             <div className="header-mini">
                 <a href="#" className="header-mini__up-btn">

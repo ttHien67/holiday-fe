@@ -6,11 +6,15 @@ import PacketsLayout from '@/Layouts/Packets';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import useDebounce from '@/hooks/useDebounce';
 
 function Packets() {
     const { id } = useParams('/packets');
     const [packets, setPackets] = useState([]);
     const [destination, setDestination] = useState();
+    const [price, setPrice] = useState(0);
+
+    const priceDebounce = useDebounce(price, 800)
 
     // Fetch appi destination's id
     useEffect(() => {
@@ -35,6 +39,14 @@ function Packets() {
     }, []);
 
     useEffect(() => {
+        const fetchApi = async () => {
+            let result = await PacketServices.search(priceDebounce)
+            setPackets(result)
+        }
+        fetchApi()
+    }, [priceDebounce])
+
+    useEffect(() => {
         let arr = [];
 
         const filter = async () => {
@@ -47,8 +59,10 @@ function Packets() {
     }, []);
 
     const handlePrice = (e) => {
-        const price = document.querySelector('.selctor-destination__price');
-        price.innerHTML = e.target.value;
+        const price = e.target.value;
+        const priceProgress = document.querySelector('.selctor-destination__price');
+        priceProgress.innerHTML = price;
+        setPrice(price);
     };
 
     return (

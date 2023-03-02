@@ -2,16 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import PacketServices from '@/services/PacketServices';
+import PacketDeletedServices from '@/services/PacketDeletedServices';
 import './PacketHome.scss';
 
 import Button from '@/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function PacketManage() {
     const [packets, setPackets] = useState([]);
-    const [deletePacketID, setDeletePacketID] = useState('');
+    const [packetDeleted, setPacketDeleted] = useState([]);
 
+    //fetch api pakcets
     useEffect(() => {
         const fetch = async () => {
             const result = await PacketServices.getAll();
@@ -20,14 +22,17 @@ function PacketManage() {
         fetch();
     }, []);
 
-    const handleSendID = (e) => {
-        setDeletePacketID(e.target.id);
+    //
+    const handleSendPacket = (e) => {
+        const data = JSON.parse(e.target.value);
+        setPacketDeleted(data);
     };
 
-    const handleDelete = async (id) => {
+    // Delete soft packet
+    const handleDeleteSoft = async (data) => {
         try {
-            const document = await PacketServices.delete(id);
-            return document;
+            await PacketDeletedServices.create(data);
+            await PacketServices.delete(data._id);
         } catch (error) {
             alert(error);
         }
@@ -38,9 +43,14 @@ function PacketManage() {
             <div className="manage-container">
                 <h1 className="manage-title text-success">Manage Packets</h1>
 
-                <Button to="/manage/packet/add" type="button" className="btn btn-outline-primary manage-btn">
-                    Add
-                </Button>
+                <div className="manage-icon">
+                    <Button to="/manage/packet/add" type="button" className="btn btn-outline-primary manage-btn">
+                        <FontAwesomeIcon icon={faPlus} />
+                    </Button>
+                    <Button to="/manage/trash" type="button" className="btn btn-outline-primary manage-btn">
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </Button>
+                </div>
 
                 <table className="table table-hover">
                     <thead>
@@ -73,7 +83,7 @@ function PacketManage() {
                                     </td>
                                     <td>
                                         <img
-                                            src={require(`src/assets` + packet.logo )}
+                                            src={require(`src/assets` + packet.logo)}
                                             alt={packet.title}
                                             style={{ width: '100px', backgroundColor: '#999' }}
                                         />
@@ -92,8 +102,8 @@ function PacketManage() {
                                             className="btn btn-outline-danger manage-btn"
                                             data-toggle="modal"
                                             data-target="#deleteModal"
-                                            id={packet._id}
-                                            onClick={handleSendID}
+                                            value={JSON.stringify(packet)}
+                                            onClick={handleSendPacket}
                                         >
                                             Delete
                                         </button>
@@ -140,7 +150,7 @@ function PacketManage() {
                             <button
                                 type="button"
                                 className="btn btn-primary"
-                                onClick={() => handleDelete(deletePacketID)}
+                                onClick={() => handleDeleteSoft(packetDeleted)}
                                 data-dismiss="modal"
                             >
                                 Delete
