@@ -8,14 +8,16 @@ function ContactForm({ id, quantity, onCommit, contactEdition }) {
     let month = d.getMonth() + 1;
     let year = d.getFullYear();
 
-    const [contactInfo, setContactInfo] = useState({
-        packetID: id,
-        date: `${month}/${day}/${year}`,
-        quantity: quantity,
-    });
+    const [contactInfo, setContactInfo] = useState({});
 
     useEffect(() => {
-        setContactInfo(contactEdition);
+        contactEdition
+            ? setContactInfo(contactEdition)
+            : setContactInfo({
+                  packetID: id,
+                  date: `${month}/${day}/${year}`,
+                  quantity: quantity,
+              });
     }, [contactEdition]);
 
     const {

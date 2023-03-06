@@ -1,7 +1,7 @@
 import createApiClient from './api.service';
 
-class ContactService {
-    constructor(baseURL = 'http://localhost:3000/api/contacts') {
+class AccountService {
+    constructor(baseURL = 'http://localhost:3000/api/account') {
         this.api = createApiClient(baseURL);
     }
 
@@ -34,4 +34,4 @@ class ContactService {
     }
 }
 
-export default new ContactService();
+export default new AccountService();

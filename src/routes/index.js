@@ -4,13 +4,16 @@ import PacketDetailPage from '../pages/PacketDetail';
 import ContactForm from '@/pages/Contact';
 
 import PacketManagement from '@/pages/Management/PacketHome';
-import Trash from '@/pages/Management/Trash'
+import Trash from '@/pages/Management/Trash';
 import AddPacket from '@/pages/Management/AddPacket';
 import EditPacket from '@/pages/Management/EditPacket';
 
 import ContactManagement from '@/pages/ContactManagement/ContactHome';
 import ContactMaking from '@/pages/ContactManagement/ContactMaking';
 import ContactEdition from '@/pages/ContactManagement/ContactEdition';
+
+import Login from '@/pages/Login';
+import Register from '@/pages/Register';
 
 const publicRoutes = [
     { path: '/', component: HomePage },
@@ -20,6 +23,8 @@ const publicRoutes = [
 
     { path: '/contact/:id', component: ContactForm },
     { path: '/contact', component: ContactForm },
+    { path: '/login', component: Login, layout: null },
+    { path: '/register', component: Register, layout: null },
 ];
 
 const privateRoutes = [
