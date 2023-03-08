@@ -2,6 +2,9 @@ import './Login.scss';
 import background from '@/assets/img/discover/nature.jpg';
 import Button from '@/components/Button';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import AccountServices from '@/services/AccountServices';
 
 function Login() {
     const {
@@ -10,8 +13,26 @@ function Login() {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const navigate = useNavigate();
+
+    const onSubmit = async (data) => {
+        try {
+            if (data) {
+                const document = await AccountServices.login(data);
+
+                // check exist account
+                if(!document.username) {
+                    alert(document.message)
+                }else {
+                    alert(document.message);
+    
+                    localStorage.setItem('token', document.token);
+                    navigate('/');
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
     return (
         <div className="login__container" style={{ backgroundImage: `url(${background})` }}>

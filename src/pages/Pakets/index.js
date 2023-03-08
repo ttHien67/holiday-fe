@@ -12,7 +12,7 @@ function Packets() {
     const { id } = useParams('/packets');
     const [packets, setPackets] = useState([]);
     const [destination, setDestination] = useState();
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(2000);
 
     const priceDebounce = useDebounce(price, 800)
 
@@ -104,7 +104,7 @@ function Packets() {
 
                             <div className="selctor-destination ">
                                 <h5 className="selctor-destination__title">
-                                    Max Price: <span className="selctor-destination__price">0</span> $
+                                    Max Price: <span className="selctor-destination__price">{price}</span> $
                                 </h5>
                                 <div className="selection-option">
                                     <input
@@ -113,6 +113,7 @@ function Packets() {
                                         max="10000"
                                         min="0"
                                         step="1"
+                                        value={price}
                                         onChange={handlePrice}
                                     />
                                     <div className="selection-option__checkbox">

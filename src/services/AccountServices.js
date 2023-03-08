@@ -10,7 +10,11 @@ class AccountService {
     }
 
     async create(data) {
-        return (await this.api.post('/', data)).data;
+        return (await this.api.post('/register', data)).data;
+    }
+
+    async login(data) {
+        return (await this.api.post('/login', data)).data;
     }
 
     async search(name) {
@@ -22,7 +26,7 @@ class AccountService {
     }
 
     async get(id) {
-        return (await this.api.get(`/${id}`)).data;
+        return (await this.api.get(`/user/${id}`)).data;
     }
 
     async update(id, data) {

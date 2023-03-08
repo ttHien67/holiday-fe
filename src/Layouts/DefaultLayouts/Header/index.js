@@ -2,13 +2,61 @@ import './Header.scss';
 import Image from '@/components/Image';
 import logoHeader from '@/assets/img/logo-travel.png';
 import Button from '@/components/Button';
-import Navigation from '@/components/Navigation'
+import Navigation from '@/components/Navigation';
+import AccountServices from '@/services/AccountServices';
+import anonymousAvatar from '@/assets/img/anonymous-avatar.png';
+import PopperWrapper from '@/components/Wrapper';
 
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faChevronCircleUp, faUser, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import jwtDecode from 'jwt-decode';
+import TippyHeadless from '@tippyjs/react/headless';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+    const [user, setUser] = useState();
+    const [open, setOpen] = useState(false);
+
+    const navigate = useNavigate()
+
+    const getUserByToken = () => {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            return;
+        }
+        token = jwtDecode(token);
+
+        return token;
+    };
+
+    useEffect(() => {
+        const tokenUser = getUserByToken();
+
+        if(tokenUser) {
+            const fetchApi = async () => {
+                const user = await AccountServices.get(tokenUser?.userId);
+    
+                if (user) {
+                    setUser(user);
+                }
+            };
+            tokenUser?.userId && fetchApi();
+        }
+
+    }, []);
+
+    const handleToggle = () => {
+        setOpen(!open);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setUser()
+        navigate(('/'))
+    }
+
     return (
         <Fragment>
             <header className="header">
@@ -42,9 +90,40 @@ function Header() {
                                 </li>
                             </ul>
                         </div>
-                        <label htmlFor="open--close" className="nav__icon">
-                            <FontAwesomeIcon icon={faBars} />
-                        </label>
+
+                        {user ? (
+                            <TippyHeadless
+                                interactive
+                                placement="bottom"
+                                visible={open}
+                                render={(attrs) => (
+                                    <div className="nav__wrapper-user" tabIndex="-1" {...attrs}>
+                                        <PopperWrapper>
+                                            <ul className='nav__wrapper-list'>
+                                                <li className='nav__wrapper-item'>
+                                                    <FontAwesomeIcon icon={faUser}/> 
+                                                    <span className='nav__wrapper-item-name'>Profile</span>
+                                                </li>
+                                                <li className='nav__wrapper-item' onClick={handleLogout}>
+                                                    <FontAwesomeIcon icon={faArrowRightFromBracket}/> 
+                                                    <span className='nav__wrapper-item-name'>Log out</span>
+                                                </li>
+                                            </ul>
+                                        </PopperWrapper>
+                                    </div>
+                                )}
+                                onClickOutside={handleToggle}
+                            >
+                                <label className="nav__icon" onClick={handleToggle}>
+                                    <img src={anonymousAvatar} alt="avatar" className="nav__avatar-image" />
+                                    <span className="nav__avatar-username">{user.username}</span>
+                                </label>
+                            </TippyHeadless>
+                        ) : (
+                            <label htmlFor="open--close" className="nav__icon">
+                                <FontAwesomeIcon icon={faBars} />
+                            </label>
+                        )}
                     </div>
                 </div>
             </header>
