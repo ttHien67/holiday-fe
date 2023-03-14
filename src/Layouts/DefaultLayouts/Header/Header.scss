@@ -237,3 +237,18 @@ u {
         transform: scale(1);
     }
 }
+
+
+.nav__btn-login {
+    border: none;
+    text-decoration: none;
+    padding: 8px 16px;
+    color: #fff;
+    background-color: transparent;
+
+    &:hover {
+        color: #fff;
+        cursor: pointer;
+    }
+
+}

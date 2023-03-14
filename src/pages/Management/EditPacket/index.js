@@ -1,7 +1,9 @@
-
 import PacketServices from '@/services/PacketServices';
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { toastSuccess, toastError } from '@/hooks/useToast';
 
 import PacketForm from '@/components/PacketForm';
 
@@ -21,18 +23,22 @@ function EditPacket() {
     const handleCommit = async (data) => {
         try {
             await PacketServices.update(id, data);
-            alert('Your packet has been updated');
+            toastSuccess('Your packet has been updated');
         } catch (error) {
-            alert(error);
+            toastError(error);
         }
     };
 
     return (
-        <div className="packet-modifying-container">
-            <h1 className="packet-modifying-title text-success">Edit Packet</h1>
+        <>
+            <Toaster toastOptions={{ style: { fontSize: '1.4rem' } }} />
 
-            <PacketForm packetEdition={packetEdition} onCommit={handleCommit}/>
-        </div>
+            <div className="packet-modifying-container">
+                <h1 className="packet-modifying-title text-success">Edit Packet</h1>
+
+                <PacketForm packetEdition={packetEdition} onCommit={handleCommit} />
+            </div>
+        </>
     );
 }
 

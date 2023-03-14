@@ -121,7 +121,7 @@ function Header() {
                             </TippyHeadless>
                         ) : (
                             <label htmlFor="open--close" className="nav__icon">
-                                <FontAwesomeIcon icon={faBars} />
+                                <Button className='nav__btn-login' to='/login'>Log in</Button>
                             </label>
                         )}
                     </div>

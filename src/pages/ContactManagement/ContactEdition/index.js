@@ -1,39 +1,44 @@
 import ContactForm from '@/components/ContactForm';
 import ContactService from '@/services/ContactServices';
-import { useEffect, useState } from 'react';
 
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { toastSuccess, toastError } from '@/hooks/useToast';
 
 function ContactEdition() {
     const { id } = useParams('/manage/contact/edit');
 
-    const [contactEditon, setContactEdition] = useState()
+    const [contactEditon, setContactEdition] = useState();
 
     useEffect(() => {
         const fetchApi = async () => {
             const result = await ContactService.get(id);
             setContactEdition(result);
-        }
+        };
 
-        fetchApi()
-    },[id])
+        fetchApi();
+    }, [id]);
 
     const handleCommit = async (data, handleClearInput) => {
         try {
             await ContactService.update(id, data);
             handleClearInput();
-            alert('Your contact has been updated');
+            toastSuccess('Your contact has been updated');
         } catch (error) {
-            alert(error);
+            toastError(error);
         }
     };
 
     return (
-        <div className="packet-modifying-container">
-            <h1 className="packet-modifying-title text-success">Contact Edition</h1>
+        <>
+            <Toaster toastOptions={{ style: { fontSize: '1.4rem' } }} />
+            <div className="packet-modifying-container">
+                <h1 className="packet-modifying-title text-success">Contact Edition</h1>
 
-            <ContactForm onCommit={handleCommit} contactEdition={contactEditon}/>
-        </div>
+                <ContactForm onCommit={handleCommit} contactEdition={contactEditon} />
+            </div>
+        </>
     );
 }
 

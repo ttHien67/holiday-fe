@@ -1,13 +1,12 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-import { useState, useEffect } from 'react';
 import PacketServices from '@/services/PacketServices';
 import PacketDeletedServices from '@/services/PacketDeletedServices';
 import './PacketHome.scss';
-
 import Button from '@/components/Button';
+
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 function PacketManage() {
     const [packets, setPackets] = useState([]);

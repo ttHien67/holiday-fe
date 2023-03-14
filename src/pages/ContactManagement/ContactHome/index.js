@@ -1,8 +1,11 @@
 import ContactServices from '@/services/ContactServices';
-import { useEffect, useState } from 'react';
 import Button from '@/components/Button';
+
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Toaster } from 'react-hot-toast';
+import { toastSuccess, toastError } from '@/hooks/useToast'
 
 function ContactManagement() {
     const [contacts, setContacts] = useState([]);
@@ -15,7 +18,7 @@ function ContactManagement() {
                 const data = await ContactServices.getAll();
                 setContacts(data);
             } catch (error) {
-                alert(error);
+                toastError(error);
             }
         };
 
@@ -29,13 +32,15 @@ function ContactManagement() {
     const handleDelete = async (id) => {
         try {
             await ContactServices.delete(id);
+            toastSuccess('Your contact has been deleted');
         } catch (error) {
-            alert(error);
+            toastError(error);
         }
     };
 
     return (
         <>
+            <Toaster toastOptions={{ style: { fontSize: '1.4rem' } }} />
             <div className="manage-container">
                 <h1 className="manage-title text-success">Manage Contacts</h1>
 

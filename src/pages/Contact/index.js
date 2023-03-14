@@ -1,31 +1,34 @@
 import './Contact.scss';
 import contactBackgroundImage from '@/assets/img/breadcrumb.jpg';
+import ContactService from '@/services/ContactServices';
+import ContactForm from '@/components/ContactForm';
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import ContactService from '@/services/ContactServices';
-import ContactForm from '@/components/ContactForm'
+import { Toaster } from 'react-hot-toast';
+import { toastSuccess, toastError } from '@/hooks/useToast';
 
 function Contact() {
     const { id } = useParams('/packet/contact');
     const [quantity, setQuantity] = useState(1);
 
     const handleQuantity = (e) => {
-        setQuantity(e.target.value );
+        setQuantity(e.target.value);
     };
 
     const handleCommit = async (data, handleClearInput) => {
         try {
             await ContactService.create(data);
-            handleClearInput()
-            alert('Your contact has been sent');
+            toastSuccess('Contact has been created');
+            handleClearInput();
         } catch (error) {
-            alert(error);
+            toastError(error);
         }
     };
 
     return (
         <>
+            <Toaster toastOptions={{ style: { fontSize: '1.4rem' } }} />
             <div className="contact__slider" style={{ backgroundImage: `url(${contactBackgroundImage})` }}>
                 <h1 className="contact__slider-title">Contact</h1>
                 <div className="overlay overlay-contact"></div>
@@ -55,7 +58,7 @@ function Contact() {
                         </select>
                     </div>
                     {/* Contact form */}
-                    <ContactForm id={id} onCommit={handleCommit} quantity={quantity}/>
+                    <ContactForm id={id} onCommit={handleCommit} quantity={quantity} />
                 </div>
                 <div className="col-4">
                     <div className="contact__info">
