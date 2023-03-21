@@ -40,6 +40,7 @@
 }
 
 .packages__item {
+    position: relative;
     padding: 15px;
 }
 
@@ -58,23 +59,18 @@
 
 .packages__item-img {
     position: relative;
-}
-.packages__item-img-sale {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 5px 10px;
-    background-color: #555;
-    color: var(--white-color);
-    font-size: 1.2rem;
-    text-decoration: none;
-    border-radius: 50px;
-    letter-spacing: 1px;
+    overflow: hidden;
+
 }
 
 .packages__item-img-pic {
     width: 100%;
     display: block;
+    transition: all ease-out 1s;
+
+    &:hover {
+        scale: 1.2;
+    }
 }
 
 .packages__item-img-icon {
@@ -82,10 +78,11 @@
     padding: 12px;
     border-radius: 50%;
     transform: translateY(50%);
-    bottom: 0;
-    right: 20px;
+    top: 30%;
+    right: 40px;
     text-decoration: none;
 }
+
 .berlin-icon-color {
     background: linear-gradient(to right, #ffd205, #ff9b05);
 }

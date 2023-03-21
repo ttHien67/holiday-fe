@@ -2,29 +2,49 @@ import './Contact.scss';
 import contactBackgroundImage from '@/assets/img/breadcrumb.jpg';
 import ContactService from '@/services/ContactServices';
 import ContactForm from '@/components/ContactForm';
+import AccountServices from '@/services/AccountServices';
 
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { toastSuccess, toastError } from '@/hooks/useToast';
+import jwtDecode from 'jwt-decode';
+import { useEffect, useState } from 'react';
 
 function Contact() {
     const { id } = useParams('/packet/contact');
     const [quantity, setQuantity] = useState(1);
+    const [userID, setUserID] = useState()
 
     const handleQuantity = (e) => {
         setQuantity(e.target.value);
     };
 
     const handleCommit = async (data, handleClearInput) => {
+
         try {
+            // make new contact
             await ContactService.create(data);
+            // update packetID into user account
+            await AccountServices.update(userID, {packetID: id})
+            
             toastSuccess('Contact has been created');
             handleClearInput();
         } catch (error) {
             toastError(error);
         }
     };
+
+    // take user id
+    useEffect(() => {
+        let token = localStorage.getItem('token');
+
+        if (!token) {
+            return;
+        }
+        token = jwtDecode(token);
+
+        setUserID(token?.userId);
+    }, []);
 
     return (
         <>
@@ -58,7 +78,7 @@ function Contact() {
                         </select>
                     </div>
                     {/* Contact form */}
-                    <ContactForm id={id} onCommit={handleCommit} quantity={quantity} />
+                    <ContactForm id={id} userID={userID} onCommit={handleCommit} quantity={quantity} />
                 </div>
                 <div className="col-4">
                     <div className="contact__info">

@@ -30,7 +30,7 @@ class AccountService {
     }
 
     async update(id, data) {
-        return (await this.api.put(`/${id}`, data)).data;
+        return (await this.api.patch(`user/${id}`, data)).data;
     }
 
     async delete(id) {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './ContactForm.scss';
 
-function ContactForm({ id, quantity, onCommit, contactEdition }) {
+function ContactForm({ id, userID, quantity, onCommit, contactEdition }) {
     const d = new Date();
     let day = d.getDate();
     let month = d.getMonth() + 1;
@@ -15,6 +15,7 @@ function ContactForm({ id, quantity, onCommit, contactEdition }) {
             ? setContactInfo(contactEdition)
             : setContactInfo({
                   packetID: id,
+                  userID: userID,
                   date: `${month}/${day}/${year}`,
                   quantity: quantity,
               });

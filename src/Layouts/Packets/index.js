@@ -24,15 +24,18 @@ function Packets({ data }) {
                                         alt={data.title}
                                         className="packages__item-img-pic"
                                     />
-                                    <a href="" className={`packages__item-img-icon ` + packet.colorIcon}>
-                                        <img src={require(`src/assets` + packet.logo)} alt="" />
-                                    </a>
                                 </div>
+                                <a href="" className={`packages__item-img-icon ` + packet.colorIcon}>
+                                    <img src={require(`src/assets` + packet.logo)} alt="" />
+                                </a>
                                 <div className="packages__item-content">
                                     <div className="packages__item-destination">
                                         <h1 className="packages__item-destination-name">{packet.title}</h1>
                                         <p className="packages__item-destination-place">
-                                            <FontAwesomeIcon icon={faLocationDot} className="packages__item-destination-place-icon"/>
+                                            <FontAwesomeIcon
+                                                icon={faLocationDot}
+                                                className="packages__item-destination-place-icon"
+                                            />
                                             {packet.location}
                                         </p>
                                     </div>

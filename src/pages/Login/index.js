@@ -64,7 +64,7 @@ function Login() {
                             <label className="login__input-name">Password</label>
                             <input
                                 className="login__input-content"
-                                type="text"
+                                type="password"
                                 placeholder="Type your Password ..."
                                 autoComplete="off"
                                 {...register('password', {
@@ -90,6 +90,12 @@ function Login() {
                         <span className="login__text-content">Haven't account? </span>
                         <Button to={'/register'} className="login__btn-text">
                             Register
+                        </Button>
+                    </div>
+                    <div className="login__text">
+                        <span className="login__text-content"></span>
+                        <Button to={'/'} className="login__btn-text">
+                            Using website without account?
                         </Button>
                     </div>
                 </div>
