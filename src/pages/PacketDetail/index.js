@@ -35,8 +35,15 @@ function PacketDetail() {
         };
         fetchApi();
     }, [id]);
-
-    // document.title = packet[0].title
+    
+    let days = 0;
+    if(packet) {
+        const departure = new Date(packet[0]?.departureTime);
+        const end = new Date(packet[0]?.endTime);
+        
+        days = (end - departure)/(24*60*60*1000)
+        
+    }
     return (
         <>
             {packet.map((_packet) => {
@@ -55,7 +62,7 @@ function PacketDetail() {
                                     </div>
                                     <div className="slider__location">
                                         <img src={iconTime} alt="" className="slider__location-icon" />
-                                        <h2 className="slider__location-name">3 - 6 days</h2>
+                                        <h2 className="slider__location-name">{days} days</h2>
                                     </div>
                                 </div>
                             </div>

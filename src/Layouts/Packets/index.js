@@ -39,6 +39,7 @@ function Packets({ data }) {
                                             {packet.location}
                                         </p>
                                     </div>
+
                                     <div className="packages__item-price">
                                         <p className="packages__item-price-name">
                                             {packet.type}
@@ -50,6 +51,19 @@ function Packets({ data }) {
                                             <span className="packages__item-price-old">{packet.oldPrice}</span>
                                             {packet.newPrice} $
                                         </span>
+                                    </div>
+                                    <div className="packages__item-time">
+                                        <h3 className="packages__item-time-name">Quantity:</h3>
+                                        <span className="packages__item-time-content">{packet.quantityTicket}</span>
+                                    </div>
+
+                                    <div className="packages__item-time">
+                                        <h3 className="packages__item-time-name">Time</h3>
+                                        <div className="">
+                                            <span className="packages__item-time-content">{packet.departureTime}</span>
+                                            <span className="packages__item-time-content">-</span>
+                                            <span className="packages__item-time-content">{packet.endTime}</span>
+                                        </div>
                                     </div>
                                     <div className="packages__item-description">
                                         <p className="packages__item-description-p">{packet.description}</p>

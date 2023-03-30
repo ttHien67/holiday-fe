@@ -1,5 +1,7 @@
 import ContactServices from '@/services/ContactServices';
 import Button from '@/components/Button';
+import PacketServices from '@/services/PacketServices';
+
 
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +12,7 @@ import { toastSuccess, toastError } from '@/hooks/useToast'
 function ContactManagement() {
     const [contacts, setContacts] = useState([]);
     const [deleteContactID, setDeleteContactID] = useState('');
+    const [packetHasRegisted, setPacketHasRegisted] = useState([]);
 
     // fetch api contacts
     useEffect(() => {
@@ -23,7 +26,23 @@ function ContactManagement() {
         };
 
         fetchApi();
-    });
+    },[]);
+
+    // 
+    const fetchPacket = () => {
+        try{
+            contacts.forEach(async contact => {
+                if(contact.packetID) {
+                    const packet = await PacketServices.get(contact.packetID);
+                    setPacketHasRegisted(pre => [...pre, packet])
+                }
+            })
+        }catch(error){  
+            toastError(error);
+        }
+    }
+
+    contacts && fetchPacket();
 
     const handleSendID = (e) => {
         setDeleteContactID(e.target.id);
@@ -58,7 +77,7 @@ function ContactManagement() {
                             <th>Address</th>
                             <th>Message</th>
                             <th>Quantity</th>
-                            <th>Packet ID</th>
+                            <th>Packet</th>
                             <th>Date</th>
                             <th></th>
                         </tr>
@@ -70,11 +89,11 @@ function ContactManagement() {
                                     <td>{index + 1}</td>
                                     <td>{contact.fullName}</td>
                                     <td>{contact.email}</td>
-                                    <td> {contact.phone}</td>
+                                    <td>{contact.phone}</td>
                                     <td>{contact.address}</td>
                                     <td>{contact.message}</td>
                                     <td>{contact.quantity}</td>
-                                    <td>{contact.packetID}</td>
+                                    <td>{packetHasRegisted[index]?.title}</td>
                                     <td>{contact.date}</td>
                                     <td>
                                         <button

@@ -65,6 +65,9 @@ function PacketManage() {
                             <th>Description</th>
                             <th>Color Button</th>
                             <th>Color Icon</th>
+                            <th>Quantity</th>
+                            <th>Departure</th>
+                            <th>End</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -95,6 +98,9 @@ function PacketManage() {
                                     <td>{packet.description}</td>
                                     <td>{packet.colorBtn}</td>
                                     <td>{packet.colorIcon}</td>
+                                    <td>{packet.quantityTicket}</td>
+                                    <td>{packet.departureTime}</td>
+                                    <td>{packet.endTime}</td>
                                     <td>
                                         <button
                                             type="button"

@@ -60,7 +60,6 @@
 .packages__item-img {
     position: relative;
     overflow: hidden;
-
 }
 
 .packages__item-img-pic {
@@ -78,7 +77,7 @@
     padding: 12px;
     border-radius: 50%;
     transform: translateY(50%);
-    top: 30%;
+    top: 27%;
     right: 40px;
     text-decoration: none;
 }
@@ -140,6 +139,25 @@
 .packages__item-destination-place-icon {
     margin-right: 6px;
     font-size: 1.4rem;
+}
+
+.packages__item-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.packages__item-time-name {
+    font-size: 2rem;
+    color: #555;
+    margin: 0;
+}
+
+.packages__item-time-content {
+    font-size: 2rem;
+    margin: 0 4px;
 }
 
 .packages__item-price {

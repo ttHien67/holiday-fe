@@ -17,8 +17,6 @@ function PacketForm({ packetEdition, onCommit }) {
         };
     };
 
-    console.log(packet);
-
     return (
         <form runat="server" onSubmit={() => onCommit(packet)}>
             <div className="input-group mb-3">
@@ -183,6 +181,49 @@ function PacketForm({ packetEdition, onCommit }) {
                     value={packet?.colorIcon || ''}
                     onChange={(e) => {
                         setPacket({ ...packet, colorIcon: e.target.value });
+                    }}
+                />
+            </div>
+            <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Quantity Tickets</span>
+                </div>
+                <input
+                    type="number"
+                    className="form-control"
+                    name="colorIcon"
+                    value={packet?.quantityTicket || ''}
+                    onChange={(e) => {
+                        setPacket({ ...packet, quantityTicket: e.target.value });
+                    }}
+                />
+            </div>
+
+            <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Departure Time</span>
+                </div>
+                <input
+                    type="date"
+                    className="form-control"
+                    name="colorIcon"
+                    // value={packet?.departureTime || ''}
+                    onChange={(e) => {
+                        setPacket({ ...packet, departureTime: new Date(e.target.value).toLocaleDateString("en-US")});
+                    }}
+                />
+            </div>
+            <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">End Time</span>
+                </div>
+                <input
+                    type="date"
+                    className="form-control"
+                    name="colorIcon"
+                    // value={packet?.endTime || ''}
+                    onChange={(e) => {
+                        setPacket({ ...packet, endTime: new Date(e.target.value).toLocaleDateString("en-US") });
                     }}
                 />
             </div>

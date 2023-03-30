@@ -4,7 +4,7 @@ import PacketServices from '@/services/PacketServices';
 import DestinationServices from '@/services/DestinationServices';
 import PacketsLayout from '@/Layouts/Packets';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import useDebounce from '@/hooks/useDebounce';
 
@@ -14,7 +14,14 @@ function Packets() {
     const [destination, setDestination] = useState();
     const [price, setPrice] = useState(2000);
 
-    const priceDebounce = useDebounce(price, 800)
+    const priceDebounce = useDebounce(price, 800);
+    useEffect(() => {
+        const fetchApi = async () => {
+            let result = await PacketServices.search(priceDebounce);
+            setPackets(result);
+        };
+        fetchApi();
+    }, [priceDebounce]);
 
     // Fetch appi destination's id
     useEffect(() => {
@@ -39,14 +46,6 @@ function Packets() {
     }, []);
 
     useEffect(() => {
-        const fetchApi = async () => {
-            let result = await PacketServices.search(priceDebounce)
-            setPackets(result)
-        }
-        fetchApi()
-    }, [priceDebounce])
-
-    useEffect(() => {
         let arr = [];
 
         const filter = async () => {
@@ -64,6 +63,12 @@ function Packets() {
         priceProgress.innerHTML = price;
         setPrice(price);
     };
+
+    const handleChange = (e) => {
+        console.log(typeof e.target.value);
+    };
+
+    console.log(packets);
 
     return (
         <>
@@ -98,7 +103,12 @@ function Packets() {
                             <div className="selctor-destination ">
                                 <h5 className="selctor-destination__title">Select Your Date: </h5>
                                 <div className="selection-option">
-                                    <input type="date" placeholder="mm-dd-yy" className="selection-option__input" />
+                                    <input
+                                        type="date"
+                                        placeholder="mm-dd-yy"
+                                        className="selection-option__input"
+                                        onChange={handleChange}
+                                    />
                                 </div>
                             </div>
 
