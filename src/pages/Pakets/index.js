@@ -3,6 +3,7 @@ import backgroundImagePacket from '@/assets/img/parallax-search-2.jpg';
 import PacketServices from '@/services/PacketServices';
 import DestinationServices from '@/services/DestinationServices';
 import PacketsLayout from '@/Layouts/Packets';
+import Search from '@/components/Search';
 
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
@@ -68,8 +69,6 @@ function Packets() {
         console.log(typeof e.target.value);
     };
 
-    console.log(packets);
-
     return (
         <>
             <div className="slider-packets" style={{ backgroundImage: `url(${backgroundImagePacket})` }}>
@@ -87,16 +86,7 @@ function Packets() {
                             <div className="selctor-destination ">
                                 <h5 className="selctor-destination__title">Select Your Destination: </h5>
                                 <div className="selection-option">
-                                    <select name="" id="" className="selctor-destination__input">
-                                        <option value="">All Destination</option>
-                                        <option value="">Euro</option>
-                                        <option value=""> - Italy</option>
-                                        <option value=""> - Netherlands</option>
-                                        <option value="">Asia</option>
-                                        <option value=""> - Thailandia</option>
-                                        <option value="">United State</option>
-                                        <option value="">Oceania</option>
-                                    </select>
+                                    <Search className='selection-option__input'/>
                                 </div>
                             </div>
 

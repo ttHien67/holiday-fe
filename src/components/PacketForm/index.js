@@ -35,11 +35,7 @@ function PacketForm({ packetEdition, onCommit }) {
                         }}
                     />
                 </div>
-                <img
-                    src={require(`src/assets` + (packet?.img || '/img/undefined.jpeg'))}
-                    alt="Image review"
-                    id="img-review"
-                />
+                {packet?.img && <img src={require(`src/assets` + packet?.img)} alt="Image review" id="img-review" />}
             </div>
 
             <div className="input-group mb-3">
@@ -48,6 +44,7 @@ function PacketForm({ packetEdition, onCommit }) {
                         <span className="input-group-text">Image Icon</span>
                     </div>
                     <input
+                        accept="image/*"
                         type="file"
                         className="form-control"
                         name="icon"
@@ -57,11 +54,7 @@ function PacketForm({ packetEdition, onCommit }) {
                         }}
                     />
                 </div>
-                <img
-                    src={require(`src/assets` + (packet?.logo || '/img/undefined.jpeg'))}
-                    alt="Icon review"
-                    id="icon-review"
-                />
+                {packet?.logo && <img src={require(`src/assets` + packet?.logo)} alt="Icon review" id="icon-review" />}
             </div>
 
             <div className="input-group mb-3">
@@ -209,7 +202,7 @@ function PacketForm({ packetEdition, onCommit }) {
                     name="colorIcon"
                     // value={packet?.departureTime || ''}
                     onChange={(e) => {
-                        setPacket({ ...packet, departureTime: new Date(e.target.value).toLocaleDateString("en-US")});
+                        setPacket({ ...packet, departureTime: new Date(e.target.value).toLocaleDateString('en-US') });
                     }}
                 />
             </div>
@@ -223,7 +216,7 @@ function PacketForm({ packetEdition, onCommit }) {
                     name="colorIcon"
                     // value={packet?.endTime || ''}
                     onChange={(e) => {
-                        setPacket({ ...packet, endTime: new Date(e.target.value).toLocaleDateString("en-US") });
+                        setPacket({ ...packet, endTime: new Date(e.target.value).toLocaleDateString('en-US') });
                     }}
                 />
             </div>

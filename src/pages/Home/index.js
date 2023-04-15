@@ -12,7 +12,6 @@ function Home() {
     const [packets, setPackets] = useState([]);
     const [packetGroup, setPacketGroup] = useState([]);
 
-    
     // fetch api destinations
     useEffect(() => {
         const fetchApi = async () => {
@@ -27,7 +26,7 @@ function Home() {
     useEffect(() => {
         const fetchApi = async () => {
             let result = await PacketServices.getAll();
-            setPacketGroup(result)
+            setPacketGroup(result);
             // reserve and slice 3 packet in array
             result = result.reverse().slice(0, 3);
             setPackets(result);
@@ -42,10 +41,10 @@ function Home() {
             <SliderLayout />
             <div className="content">
                 {/* Destination */}
-                <DestinationLayout data={destinations} packets={packetGroup}/>
+                <DestinationLayout data={destinations} packets={packetGroup} />
 
                 {/* Packets */}
-                <PacketsLayout data={packets}/>
+                <PacketsLayout data={packets} />
             </div>
         </>
     );

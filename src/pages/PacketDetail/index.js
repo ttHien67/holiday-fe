@@ -35,14 +35,13 @@ function PacketDetail() {
         };
         fetchApi();
     }, [id]);
-    
+
     let days = 0;
-    if(packet) {
+    if (packet) {
         const departure = new Date(packet[0]?.departureTime);
         const end = new Date(packet[0]?.endTime);
-        
-        days = (end - departure)/(24*60*60*1000)
-        
+
+        days = (end - departure) / (24 * 60 * 60 * 1000);
     }
     return (
         <>
@@ -125,9 +124,9 @@ function PacketDetail() {
                                 </div>
                             </div>
                             <div className="feedback-section">
-                                <h1 className='title-resgister'>Join with us</h1>
+                                <h1 className="title-resgister">Join with us</h1>
                                 <Button to={`/contact/` + _packet._id} className={`btn-resgister ` + _packet.colorBtn}>
-                                    Resgister
+                                    Register
                                 </Button>
                             </div>
                         </div>

@@ -8,13 +8,10 @@ import PacketServices from '@/services/PacketServices';
 import './Search.scss';
 import useDebounce from '@/hooks/useDebounce';
 
-
-
-function Search() {
+function Search({ className }) {
     const [searchValue, setSearchValue] = useState();
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
-
 
     const inputRef = useRef();
     const debounce = useDebounce(searchValue, 700);
@@ -58,7 +55,7 @@ function Search() {
                 )}
                 onClickOutside={handleHideResult}
             >
-                <div className="search">
+                <div className={`search ${className}`}>
                     <input
                         className="search-input"
                         value={searchValue}

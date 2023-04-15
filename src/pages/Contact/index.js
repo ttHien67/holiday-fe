@@ -3,6 +3,7 @@ import contactBackgroundImage from '@/assets/img/breadcrumb.jpg';
 import ContactService from '@/services/ContactServices';
 import ContactForm from '@/components/ContactForm';
 import AccountServices from '@/services/AccountServices';
+import PacketServices from '@/services/PacketServices';
 
 import { useParams } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -13,20 +14,32 @@ import { useEffect, useState } from 'react';
 function Contact() {
     const { id } = useParams('/packet/contact');
     const [quantity, setQuantity] = useState(1);
-    const [userID, setUserID] = useState()
+    const [userID, setUserID] = useState();
+    const [packet, setPacket] = useState();
+
+    useEffect(() => {
+        const fetchApi = async () => {
+            const data = await PacketServices.get(id);
+            setPacket(data);
+        };
+
+        fetchApi();
+    }, [id]);
 
     const handleQuantity = (e) => {
         setQuantity(e.target.value);
     };
 
     const handleCommit = async (data, handleClearInput) => {
-
+        const updatedQuantityTicket =  +packet?.quantityTicket - quantity;
         try {
             // make new contact
             await ContactService.create(data);
             // update packetID into user account
-            await AccountServices.update(userID, {packetID: id})
-            
+            await AccountServices.update(userID, { packetID: id });
+            // update quantity tickets in packets
+            await PacketServices.update(id, {...packet, quantityTicket: updatedQuantityTicket});
+
             toastSuccess('Contact has been created');
             handleClearInput();
         } catch (error) {
@@ -74,7 +87,6 @@ function Contact() {
                             <option value={3}>3</option>
                             <option value={4}>4</option>
                             <option value={5}>5</option>
-                            <option value={'group'}>Group</option>
                         </select>
                     </div>
                     {/* Contact form */}

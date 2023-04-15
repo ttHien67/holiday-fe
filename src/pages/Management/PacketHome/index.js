@@ -150,7 +150,7 @@ function PacketManage() {
                         <div className="modal-body">Do you want to delete packet?</div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">
-                                Close
+                                Cancle
                             </button>
                             <button
                                 type="button"

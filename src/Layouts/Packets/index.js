@@ -48,7 +48,9 @@ function Packets({ data }) {
                                             </button>
                                         </p>
                                         <span className="packages__item-price-money">
-                                            <span className="packages__item-price-old">{packet.oldPrice}</span>
+                                            {!!packet?.oldPrice && (
+                                                <span className="packages__item-price-old">{packet.oldPrice}</span>
+                                            )}
                                             {packet.newPrice} $
                                         </span>
                                     </div>
@@ -58,7 +60,7 @@ function Packets({ data }) {
                                     </div>
 
                                     <div className="packages__item-time">
-                                        <h3 className="packages__item-time-name">Time</h3>
+                                        <h3 className="packages__item-time-name">Time:</h3>
                                         <div className="">
                                             <span className="packages__item-time-content">{packet.departureTime}</span>
                                             <span className="packages__item-time-content">-</span>
